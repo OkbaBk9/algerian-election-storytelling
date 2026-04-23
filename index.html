@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>التصويت في الجزائر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="zellij-bg"><div class="zellij-pattern"></div></div>
+
+    <nav class="top-bar">
+      <div class="top-bar__brand">التصويت في الجزائر</div>
+      <div class="top-bar__controls">
+        <span class="slide-counter" id="slide-counter">01 / --</span>
+        <button id="btn-space" class="btn btn--outline">عرض الفضاء</button>
+        <button id="btn-databook" class="btn btn--accent">كتاب البيانات</button>
+      </div>
+    </nav>
+
+    <div id="viewport"><div id="canvas"></div></div>
+
+    <div class="nav-controls">
+      <button id="btn-prev" class="btn btn--ghost">◀ السابق</button>
+      <button id="btn-next" class="btn btn--primary">التالي ▶</button>
+    </div>
+
+    <div id="modal-databook" class="modal hidden">
+      <div class="modal__card" style="max-height: 90vh; overflow-y: auto;">
+        <button id="btn-close-modal" class="modal__close">&times;</button>
+        <h2 class="modal__title">كتاب البيانات والمنهجية</h2>
+        <div class="modal__body">
+          <div class="modal__section">
+            <h3>المنهجية الزمنية (1997-2025)</h3>
+            <p>تمتد هذه الدراسة التحليلية من أول انتخابات تعددية بعد الأزمة عام <b>1997</b> إلى التوقعات المعمقة لعام <b>2025</b> وصولاً إلى 2030 باستخدام نماذج الذكاء الاصطناعي التنبؤي.</p>
+          </div>
+          <div class="modal__section">
+            <h3>مصادر البيانات العميقة</h3>
+            <p><span class="badge badge--green">V-Dem</span> مؤشرات الديمقراطية والتأثير الإعلامي والمجتمع المدني (1997-2024)</p>
+            <p><span class="badge badge--blue">IPU</span> الاتحاد البرلماني الدولي — بيانات التمثيل الديموغرافي النسوي والمؤسساتي</p>
+            <p><span class="badge badge--green">ANIE & MOI</span> الهيئة المستقلة للانتخابات ووزارة الداخلية — بيانات المشاركة الخام بدقة للولايات الـ 58</p>
+            <p><span class="badge badge--blue">ONS & World Bank</span> الديوان الوطني للإحصاء والبنك الدولي — البطالة، التضخم، تقلبات أسعار النفط، والديموغرافيا</p>
+            <p><span class="badge badge--green">Google Trends</span> تنقيب البيانات الضخمة (Big Data) — مؤشرات البحث اليومية للجزائريين من 2004 إلى الآن (مثل: الهجرة، التشغيل)</p>
+          </div>
+          <div class="modal__section">
+            <h3>منهجية رصد "الأحداث الاستثنائية"</h3>
+            <p><b>تأثير أم درمان (2009-2010):</b> تم تحليل المشاعر العامة (Sentiment Analysis) لمانشيتات الصحف الوطنية (الشروق، الخبر) وربط حالة النشوة القومية بارتفاع مؤشرات التصويت.</p>
+            <p><b>عناوين الصحافة والإعلام:</b> الاعتماد على تحليلات NLP لمقالات الصحف خلال سنوات (2014-2019) لقياس حجم التباعد بين الخطاب الرسمي واهتمامات المواطن.</p>
+            <p><b>تدخلات النساء (Women Intervention):</b> دراسة تأثير نظام الكوتا (2012) في رفع نسبة تمثيل المرأة برلمانياً لـ 31%، وانعكاس ذلك على حماس الأسرة في المحليات.</p>
+          </div>
+          <div class="modal__section">
+            <h3>الخوارزميات المستخدمة</h3>
+            <ul>
+              <li><b>NLP (Natural Language Processing)</b> — دراسة الكلمات المكررة في برامج المترشحين ووعود الحملات وقياس تأثيرها (صفر) على المواطن الساخط.</li>
+              <li><b>PCA (Principal Component Analysis)</b> — تقليص الأبعاد المعقدة كالتأثيرات الديموغرافية لجيل الألفية.</li>
+              <li><b>ARIMA</b> — التنبؤ الزمني الرياضي المستقبلي للاستحقاقات القادمة.</li>
+              <li><b>K-Means Clustering</b> — إعادة رسم الخريطة الجيوسياسية وفصل الولايات الـ 58 إلى (ولاءات عروشية، غضب حضري، مقاطعة ممنهجة).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Modal -->
+    <div id="modal-chart" class="modal hidden">
+      <div class="modal__card modal__card--wide">
+        <button id="btn-close-chart" class="modal__close">&times;</button>
+        <div id="modal-chart-content" style="width:100%; height:80vh;"></div>
+      </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
