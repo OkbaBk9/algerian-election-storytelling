@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>التصويت في الجزائر</title>
+    <title>التصويت في الجزائر - قراءة تحليلية عميقة</title>
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css" />
   </head>
@@ -13,60 +13,86 @@
     <nav class="top-bar">
       <div class="top-bar__brand">التصويت في الجزائر</div>
       <div class="top-bar__controls">
-        <span class="slide-counter" id="slide-counter">01 / --</span>
+        <span class="slide-counter" id="slide-counter">01 / 22</span>
         <button id="btn-space" class="btn btn--outline">عرض الفضاء</button>
-        <button id="btn-databook" class="btn btn--accent">كتاب البيانات</button>
+        <button id="btn-databook" class="btn btn--outline">كتاب البيانات</button>
+        <button id="btn-analysis" class="btn btn--primary">الدراسة البيانية</button>
       </div>
     </nav>
 
     <div id="viewport"><div id="canvas"></div></div>
 
     <div class="nav-controls">
-      <button id="btn-prev" class="btn btn--ghost">◀ السابق</button>
-      <button id="btn-next" class="btn btn--primary">التالي ▶</button>
+      <button id="btn-prev" class="btn btn--outline">السابق</button>
+      <button id="btn-next" class="btn btn--primary">التالي</button>
     </div>
 
+    <!-- Data Book Modal -->
     <div id="modal-databook" class="modal hidden">
-      <div class="modal__card" style="max-height: 90vh; overflow-y: auto;">
-        <button id="btn-close-modal" class="modal__close">&times;</button>
-        <h2 class="modal__title">كتاب البيانات والمنهجية</h2>
+      <div class="modal__card">
+        <button id="btn-close-databook" class="modal__close">&times;</button>
+        <h2 class="modal__title">كتاب البيانات (مصادر ومعالجة)</h2>
         <div class="modal__body">
           <div class="modal__section">
-            <h3>المنهجية الزمنية (1997-2025)</h3>
-            <p>تمتد هذه الدراسة التحليلية من أول انتخابات تعددية بعد الأزمة عام <b>1997</b> إلى التوقعات المعمقة لعام <b>2025</b> وصولاً إلى 2030 باستخدام نماذج الذكاء الاصطناعي التنبؤي.</p>
-          </div>
-          <div class="modal__section">
-            <h3>مصادر البيانات العميقة</h3>
-            <p><span class="badge badge--green">V-Dem</span> مؤشرات الديمقراطية والتأثير الإعلامي والمجتمع المدني (1997-2024)</p>
-            <p><span class="badge badge--blue">IPU</span> الاتحاد البرلماني الدولي — بيانات التمثيل الديموغرافي النسوي والمؤسساتي</p>
-            <p><span class="badge badge--green">ANIE & MOI</span> الهيئة المستقلة للانتخابات ووزارة الداخلية — بيانات المشاركة الخام بدقة للولايات الـ 58</p>
-            <p><span class="badge badge--blue">ONS & World Bank</span> الديوان الوطني للإحصاء والبنك الدولي — البطالة، التضخم، تقلبات أسعار النفط، والديموغرافيا</p>
-            <p><span class="badge badge--green">Google Trends</span> تنقيب البيانات الضخمة (Big Data) — مؤشرات البحث اليومية للجزائريين من 2004 إلى الآن (مثل: الهجرة، التشغيل)</p>
-          </div>
-          <div class="modal__section">
-            <h3>منهجية رصد "الأحداث الاستثنائية"</h3>
-            <p><b>تأثير أم درمان (2009-2010):</b> تم تحليل المشاعر العامة (Sentiment Analysis) لمانشيتات الصحف الوطنية (الشروق، الخبر) وربط حالة النشوة القومية بارتفاع مؤشرات التصويت.</p>
-            <p><b>عناوين الصحافة والإعلام:</b> الاعتماد على تحليلات NLP لمقالات الصحف خلال سنوات (2014-2019) لقياس حجم التباعد بين الخطاب الرسمي واهتمامات المواطن.</p>
-            <p><b>تدخلات النساء (Women Intervention):</b> دراسة تأثير نظام الكوتا (2012) في رفع نسبة تمثيل المرأة برلمانياً لـ 31%، وانعكاس ذلك على حماس الأسرة في المحليات.</p>
-          </div>
-          <div class="modal__section">
-            <h3>الخوارزميات المستخدمة</h3>
+            <h3>1. مصادر البيانات الرقمية</h3>
             <ul>
-              <li><b>NLP (Natural Language Processing)</b> — دراسة الكلمات المكررة في برامج المترشحين ووعود الحملات وقياس تأثيرها (صفر) على المواطن الساخط.</li>
-              <li><b>PCA (Principal Component Analysis)</b> — تقليص الأبعاد المعقدة كالتأثيرات الديموغرافية لجيل الألفية.</li>
-              <li><b>ARIMA</b> — التنبؤ الزمني الرياضي المستقبلي للاستحقاقات القادمة.</li>
-              <li><b>K-Means Clustering</b> — إعادة رسم الخريطة الجيوسياسية وفصل الولايات الـ 58 إلى (ولاءات عروشية، غضب حضري، مقاطعة ممنهجة).</li>
+              <li><strong>السلطة الوطنية المستقلة للانتخابات (ANIE):</strong> أرشيف المحاضر لمخرجات الأصوات، الأوراق الملغاة، ونسب المشاركة من 2019 إلى 2024.</li>
+              <li><strong>وزارة الداخلية والجماعات المحلية:</strong> البيانات التاريخية للاستحقاقات ما بين 1997 و 2017.</li>
+              <li><strong>الديوان الوطني للإحصاء (ONS):</strong> المؤشرات الديموغرافية الشاملة، النمو السكاني، والبطالة الحضَرية كمتغيرات مستقلة في نموذج القياس.</li>
+              <li><strong>معهد Varieties of Democracy (V-Dem):</strong> المؤشرات الزمنية للانفتاح الديمقراطي والمشاركة المجتمعية للجزائر مقارنة بدول المغرب العربي.</li>
+            </ul>
+          </div>
+          <div class="modal__section">
+            <h3>2. معالجة البيانات والنمذجة</h3>
+            <ul>
+              <li>التجميع المتقدم للبيانات خام وتنظيفها عبر لغة بايثون للربط المباشر بين المؤشرات الاقتصادية والسلوك السياسي.</li>
+              <li><strong>استشراف ARIMA:</strong> استخدام السلسلة الزمنية التاريخية لإصدار توقعات رياضية موثوقة لنسب التصويت للسنوات القادمة حتى 2030.</li>
+              <li><strong>خوارزمية K-Means:</strong> محول آلي لتقسيم الولايات الثلاث والثمانين إلى 3 تصنيفات سلوكية بناءً على حدة أو هشاشة المشاركة السياسية.</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Chart Modal -->
-    <div id="modal-chart" class="modal hidden">
-      <div class="modal__card modal__card--wide">
-        <button id="btn-close-chart" class="modal__close">&times;</button>
-        <div id="modal-chart-content" style="width:100%; height:80vh;"></div>
+    <!-- Global Side Panel for Suggestions -->
+    <div id="side-panel" class="side-panel">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2 class="side-panel__title" style="margin-bottom: 0;">التوصيات العملياتية</h2>
+        <button id="btn-close-sidemenu" class="btn btn--outline" style="padding: 0.5rem 1rem; border-color: var(--border);">إغلاق</button>
+      </div>
+      <div class="side-panel__card">
+        <div class="side-panel__entity">توصية للسلطة المستقلة (ANIE)</div>
+        <p id="anie-sugg-text" class="side-panel__text">جاري تحميل البيانات...</p>
+      </div>
+      <div class="side-panel__card" style="margin-top: 20px;">
+        <div class="side-panel__entity">توصية للأحزاب السياسية</div>
+        <p id="party-sugg-text" class="side-panel__text">جاري تحميل البيانات...</p>
+      </div>
+    </div>
+
+    <!-- Analytical Study Modal -->
+    <div id="modal-analysis" class="modal hidden">
+      <div class="modal__card">
+        <button id="btn-close-analysis" class="modal__close">&times;</button>
+        <h2 class="modal__title">الملحق المنهجي والتحليلي</h2>
+        <div class="modal__body">
+          <div class="modal__section">
+            <h3>التأصيل الزمني والبحثي</h3>
+            <p>لا يمكن قراءة السلوك الانتخابي في الجزائر كعملية إحصائية منعزلة. تغطي المنهجية الحقبة من الركود الأمني (1997)، لزمن الوفرة المالية، مروراً بحراك 2019 وتداعيات الوباء العالمي وتفريعات التضخم. الإسقاط يعرض البيانات لا كأرقام، بل كقصة عاطفية وبراغماتية أحياناً.</p>
+          </div>
+          <div class="modal__section">
+            <h3>"سيكولوجيا الجماهير"</h3>
+            <p>تجاوزنا الرصد لعدد الأوراق لقياس الانفعالات الاجتماعية الموازية. فعلى سبيل المثال، قياس "تأثير أم درمان" عبر تتبع الانزياح العاطفي (Sentiment) الذي طغى لفترة وجيزة. إثبات أن المقاطعة السلوكية ناتجة عن التهميش الحضري، وبأن الورقة البيضاء هي أرقى صور التجلي الحركي والمطالبة الديمقراطية الجذرية.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Expand Modal -->
+    <div id="modal-chart" class="modal hidden" style="align-items: center; background: rgba(0,0,0,0.85);">
+      <div class="modal__card" style="width: 90vw; max-width: none; min-height: auto; height: 90vh; background: #fff; padding: 1rem; display: flex; flex-direction: column;">
+        <button id="btn-close-chart" class="modal__close" style="top: -20px; right: -20px; color: white;">&times;</button>
+        <div id="modal-chart-content" style="width:100%; height:100%;"></div>
       </div>
     </div>
 
