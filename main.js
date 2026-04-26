@@ -186,7 +186,7 @@ function ax(svg, x, y, w, h, xl, yl) {
 
 function drawCharts(b, i) {
   if (!b.charts) return;
-  const fn = { line: cLine, bar: cBar, scatter: cScatter, step: cStep, pca: cPCA, arima: cARIMA, heatmap: cMap, pie: cPie, violin: cViolin, sankey: cSankey, chord: cChord, image: cImage, wordcloud: cWordCloud };
+  const fn = { line: cLine, bar: cBar, scatter: cScatter, step: cStep, pca: cPCA, arima: cARIMA, heatmap: cMap, pie: cPie, violin: cViolin, sankey: cSankey, chord: cChord, image: cImage, wordcloud: cWordCloud, dendrogram: cDendrogram };
   b.charts.forEach((ch, j) => {
     const id = `ch-${i}-${j}`;
     try {
@@ -421,4 +421,78 @@ function cViolin(id, data) {
     .attr("fill", C.green).attr("opacity", 0.6)
     .attr("d", d3.area().y(d => d.y).x0(w / 2).x1(d => d.x).curve(d3.curveCatmullRom))
     .on('mouseover', e => ttShow(`<strong>كثافة تصويت العروش</strong>ولاء استثنائي فوق 65% في الجنوب`, e)).on('mousemove', ttMove).on('mouseout', ttHide);
+}
+
+function cDendrogram(id, data, b) {
+  const s = mkSVG(id); if (!s) return;
+  const { svg, w, h } = s;
+
+  const colorMap = { blue: '#4285F4', green: '#0F9D58', red: '#DB4437' };
+  const clusterLabels = { blue: 'التمردية 40%', green: 'الوسطية 40%', red: 'الجنوب 20%' };
+
+  const root = d3.hierarchy(data);
+  const treeLayout = d3.cluster().size([w - 30, h - 60]);
+  treeLayout(root);
+
+  const g = svg.append("g").attr("transform", "translate(15,10)");
+
+  function getClusterColor(d) {
+    let n = d;
+    while (n.depth > 1) n = n.parent;
+    return n.data && n.data.color ? colorMap[n.data.color] : C.text3;
+  }
+
+  // links - step lines
+  g.selectAll(".link")
+    .data(root.descendants().slice(1))
+    .enter().append("path")
+    .attr("fill", "none")
+    .attr("stroke", d => d.depth === 1 ? '#666' : getClusterColor(d))
+    .attr("stroke-width", d => Math.max(1, 3 - d.depth * 0.4))
+    .attr("opacity", 0.85)
+    .attr("d", d => `M${d.x},${d.y} V${d.parent.y} H${d.parent.x}`);
+
+  const node = g.selectAll(".node")
+    .data(root.descendants())
+    .enter().append("g")
+    .attr("transform", d => `translate(${d.x},${d.y})`);
+
+  // leaf dots
+  const leaves = node.filter(d => !d.children);
+
+  leaves.append("circle")
+    .attr("r", 3.5)
+    .attr("fill", d => getClusterColor(d))
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 0.8)
+    .style("cursor", "pointer")
+    .on('mouseover', (e, d) => {
+      const col = getClusterColor(d);
+      let n = d; while (n.depth > 1) n = n.parent;
+      const label = n.data.color ? clusterLabels[n.data.color] : '';
+      ttShow(`<strong style="color:${col}">${label}</strong><br>ولاية رقم: <span>${d.data.name}</span>`, e);
+    })
+    .on('mousemove', ttMove)
+    .on('mouseout', ttHide);
+
+  leaves.append("text")
+    .attr("dy", 14)
+    .attr("x", 0)
+    .style("text-anchor", "middle")
+    .style("font-size", "7px")
+    .style("fill", d => getClusterColor(d))
+    .style("font-family", "Alexandria")
+    .style("pointer-events", "none")
+    .text(d => d.data.name);
+
+  // cluster name labels at depth-1 nodes
+  node.filter(d => d.depth === 1).append("text")
+    .attr("dy", -8)
+    .attr("x", 0)
+    .style("text-anchor", "middle")
+    .style("font-size", "9px")
+    .style("font-weight", "700")
+    .style("fill", d => d.data.color ? colorMap[d.data.color] : C.text2)
+    .style("font-family", "Alexandria")
+    .text(d => d.data.name);
 }
